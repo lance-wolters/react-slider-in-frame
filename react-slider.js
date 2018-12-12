@@ -464,18 +464,21 @@
     },
 
     _addHandlers: function (eventMap) {
+      var doc = this.slider.ownerDocument;
       for (var key in eventMap) {
-        document.addEventListener(key, eventMap[key], false);
+          doc.addEventListener(key, eventMap[key], false);
       }
     },
 
     _removeHandlers: function (eventMap) {
+      var doc = this.slider.ownerDocument;
       for (var key in eventMap) {
-        document.removeEventListener(key, eventMap[key], false);
+          doc.removeEventListener(key, eventMap[key], false);
       }
     },
 
     _start: function (i, position) {
+      var self = this;
       var activeEl = document.activeElement;
       var handleRef = this['handle' + i];
       // if activeElement is body window will lost focus in IE9
@@ -493,7 +496,7 @@
 
       this.setState(function (prevState) {
         return {
-          startValue: this.state.value[i],
+          startValue: self.state.value[i],
           startPosition: position !== undefined ? position : prevState.startPosition,
           index: i,
           zIndices: zIndices
